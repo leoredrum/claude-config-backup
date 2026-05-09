@@ -1,0 +1,41 @@
+model_list:
+  # 主 Agent - 智谱 GLM
+  - model_name: glm-4-plus
+    litellm_params:
+      model: zhipuai/glm-4-plus
+      api_key: os.environ/ZHIPUAI_API_KEY
+
+  # 主 Agent - 智谱 GLM (快速版)
+  - model_name: glm-4-flash
+    litellm_params:
+      model: zhipuai/glm-4-flash
+      api_key: os.environ/ZHIPUAI_API_KEY
+
+  # 子 Agent - 本地 Ollama
+  - model_name: qwen2.5-coder-32b
+    litellm_params:
+      model: ollama/qwen2.5-coder:32b
+      api_base: http://localhost:11434
+
+  # 子 Agent - 本地 Ollama (备用小模型)
+  - model_name: qwen2.5-coder-7b
+    litellm_params:
+      model: ollama/qwen2.5-coder:7b
+      api_base: http://localhost:11434
+
+litellm_settings:
+  drop_params: true  # 丢弃 Anthropic 专有参数
+  set_verbose: false
+  master_key: false  # 关闭 master key 验证
+
+  # 性能优化
+  max_budget: 100.0
+  budget_refresh_interval: 3600
+
+  # 重试配置
+  num_retries: 3
+  retry_strategy: exponential_backoff
+
+  # 超时配置
+  request_timeout: 300
+  connection_timeout: 30

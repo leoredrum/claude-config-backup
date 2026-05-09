@@ -6,6 +6,7 @@
 
 ### ✅ 已包含配置
 
+**Claude Code 配置**:
 - **settings.json 模板** - 主配置（需填入敏感信息）
 - **.mcp.json** - Ollama MCP 服务器配置
 - **settings.local.json** - 本地配置覆盖
@@ -13,6 +14,12 @@
 - **自定义 spinner** - 中文动词和提示语
 - **Workflow Orchestrator** - 子 Agent 自动编排
 - **Ollama 集成** - 本地 qwen2.5-coder:32b 模型
+
+**cc-haha 桌面版配置**:
+- **cc-haha-litellm-config.yaml** - LiteLLM 代理配置
+- **cc-haha-env-template** - 环境变量模板
+- **start-cc-haha.sh** - 一键启动脚本
+- **CC-HAHA-SETUP.md** - 完整配置文档
 
 ### 🎯 核心特性
 
@@ -70,6 +77,73 @@ ollama pull qwen2.5-coder:32b
 ### 6. 重启 Claude Code
 
 关闭并重新打开 Claude Code，配置即可生效。
+
+## 🖥️ cc-haha 桌面版配置（智谱 + 本地 Ollama）
+
+### 概述
+
+cc-haha 是 Claude Code 的桌面版，支持完全本地化的多 Agent 系统。本配置提供：
+
+- **主 Agent**: 智谱 GLM-4-Plus/Flash - 任务规划和决策
+- **子 Agent**: 本地 Ollama Qwen2.5-Coder:32b - 代码执行
+- **优势**: 节省 70-90% API 成本，完全本地化
+
+### 快速开始
+
+```bash
+# 1. 进入配置目录
+cd ~/Desktop/claude-config-backup
+
+# 2. 配置环境变量
+cp cc-haha-env-template .env
+nano .env  # 填入 ZHIPUAI_API_KEY
+
+# 3. 启动服务
+./start-cc-haha.sh
+```
+
+### 详细文档
+
+完整的配置说明、故障排除和性能优化，请查看：
+
+📖 **[CC-HAHA-SETUP.md](./CC-HAHA-SETUP.md)**
+
+### 配置文件说明
+
+| 文件 | 用途 |
+|------|------|
+| `cc-haha-litellm-config.yaml` | LiteLLM 代理配置（模型映射） |
+| `cc-haha-env-template` | 环境变量模板 |
+| `start-cc-haha.sh` | 自动启动脚本 |
+| `CC-HAHA-SETUP.md` | 完整配置文档 |
+
+### 系统要求
+
+- **Python 3.8+** - 运行 LiteLLM
+- **Node.js** - 运行 cc-haha
+- **Ollama** - 本地模型服务
+- **16GB+ 内存** - Qwen2.5-Coder:32b 需要
+- **智谱 API Key** - 从 https://open.bigmodel.cn/ 获取
+
+### 工作原理
+
+```
+cc-haha → LiteLLM 代理 → 智谱 GLM-4 (主Agent)
+                    ↘ Ollama Qwen2.5 (子Agent)
+```
+
+LiteLLM 代理将 Anthropic API 协议转换为：
+- 智谱 AI API（主 Agent）
+- Ollama OpenAI 协议（子 Agent）
+
+### 成本对比
+
+| 方案 | 主Agent | 子Agent | 月成本 |
+|------|---------|---------|--------|
+| 纯智谱 | 100% | - | ¥180 |
+| 混合方案 | 20% | 80%本地 | ¥36 |
+
+**节省**: 80% API 成本
 
 ## 📝 配置说明
 
@@ -165,15 +239,28 @@ git push
 
 ## 📚 相关资源
 
+### Claude Code 生态
 - [Ollama 官网](https://ollama.ai)
 - [Claude Code 文档](https://claude.ai/code)
 - [Workflow Orchestrator](https://github.com/barkain/claude-code-workflow-orchestration)
 - [Ollama MCP Server](https://github.com/rawveg/ollama-mcp)
 
+### cc-haha 相关
+- [cc-haha GitHub](https://github.com/NanmiCoder/cc-haha)
+- [LiteLLM 文档](https://docs.litellm.ai/)
+- [智谱 AI 开放平台](https://open.bigmodel.cn/)
+- [Qwen2.5-Coder 模型](https://ollama.com/library/qwen2.5-coder)
+
 ## 📅 更新历史
 
-- 2026-05-10 - 初始配置备份
+- **2026-05-10** - 初始配置备份
   - Ollama qwen2.5-coder:32b 集成
   - Workflow Orchestrator 配置
   - 中文界面配置
   - 子 Agent 自动委托
+
+- **2026-05-10** - 添加 cc-haha 桌面版配置
+  - 智谱 GLM-4 + 本地 Ollama 混合方案
+  - LiteLLM 代理配置
+  - 自动化启动脚本
+  - 完整配置文档
