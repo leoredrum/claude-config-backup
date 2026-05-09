@@ -1,0 +1,41 @@
+{
+  "env": {
+    "ANTHROPIC_AUTH_TOKEN": "YOUR_AUTH_TOKEN_HERE",
+    "ANTHROPIC_BASE_URL": "https://api.z.ai/api/anthropic",
+    "API_TIMEOUT_MS": "3000000",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+    "OLLAMA_MODEL": "qwen2.5-coder:32b",
+    "OLLAMA_HOST": "http://localhost:11434"
+  },
+  "permissions": {
+    "allow": [
+      "Bash",
+      "Read",
+      "Edit",
+      "Write",
+      "Glob",
+      "Grep",
+      "Agent",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "deny": [
+      "Bash(osascript:*)",
+      "Bash(sudo:*)",
+      "Bash(security:*)",
+      "Bash(pkexec:*)"
+    ],
+    "defaultMode": "bypassPermissions"
+  },
+  "enabledPlugins": {
+    "glm-plan-usage@zai-coding-plugins": true,
+    "workflow-orchestrator@barkain-plugins": true
+  },
+  "enabledMcpjsonServers": [
+    "ollama"
+  ],
+  "language": "Chinese",
+  "spinnerTipsEnabled": true,
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "dark"
+}

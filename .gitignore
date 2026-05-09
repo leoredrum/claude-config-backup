@@ -1,0 +1,21 @@
+# 敏感配置文件（包含 API token）
+settings.json
+*_secret.json
+*_private.json
+
+# 备份文件
+*.backup
+*.bak
+*~
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# 临时文件
+*.tmp
+*.temp

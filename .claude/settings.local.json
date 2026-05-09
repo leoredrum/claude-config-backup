@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rm ~/.hermes/profiles/supervisor/home/.claude.json)",
+      "Bash(cp /Users/leo/.claude.json ~/.hermes/profiles/supervisor/home/.claude.json)",
+      "Bash(HOME=/Users/leo/.hermes/profiles/supervisor/home /Users/leo/.local/bin/claude auth status --text)",
+      "Skill(update-config)",
+      "Bash(killall XMediaDownloader)",
+      "Bash(rm -rf /Users/leo/x-downloader-mac/XMediaDownloader.app)",
+      "Bash(rm -rf ~/Library/Developer/Xcode/DerivedData/*)",
+      "Bash(xcodebuild -project XMediaDownloader.xcodeproj -scheme XMediaDownloader -configuration Release clean build)",
+      "Bash(echo \"\")",
+      "Bash(echo \"# Kemono/Coomer 下载器快捷命令\")",
+      "Bash(echo \"alias kemono='cd ~/Apps/Better-Kemono-and-Coomer-Downloader && ./start.sh'\")",
+      "Bash(cp /tmp/DownloadBot-review/IMPROVEMENTS.md /tmp/DownloadBot-review/docs/IMPROVEMENTS.md)",
+      "Bash(cp /Users/leo/.claude/scratchpad/downloadbot-architecture-analysis.md /tmp/DownloadBot-review/docs/ARCHITECTURE_ANALYSIS.md)",
+      "Bash(cp /Users/leo/.claude/scratchpad/code_review_downloadbot.md /tmp/DownloadBot-review/docs/CODE_REVIEW.md)",
+      "Bash(cp ~/.claude/.mcp.json ~/Desktop/claude-config-backup/.claude/.mcp.json)",
+      "Bash(cp ~/.claude/settings.local.json ~/Desktop/claude-config-backup/.claude/)"
+    ]
+  }
+}
